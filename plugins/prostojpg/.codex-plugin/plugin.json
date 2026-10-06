@@ -1,16 +1,16 @@
 {
   "name": "prostojpg",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Download product photos from Wildberries and Ozon with the ProstoJPG browser extension, create similar product cards or replace the main subject using image generation available in Codex, and package the results locally.",
   "author": { "name": "ПростоJPG", "url": "https://prosto-seller.ru/" },
   "homepage": "https://github.com/8976878-source/ProstoJPG",
   "skills": "./skills/",
   "keywords": ["Wildberries", "WB", "Ozon", "product photos", "product cards", "ПростоJPG", "карточки товара", "фото по артикулу"],
   "interface": {
-    "displayName": "ПростоJPG",
+    "displayName": "ПростоJPG от ПростоСеллер",
     "shortDescription": "Product photos for WB and Ozon",
     "longDescription": "Choose one of three workflows: download product photos and available videos by article number with the ProstoJPG Chrome extension; create similar product cards with image generation available in your Codex environment; or replace the main subject with your attached product photo. The bundled local script validates all photos, preserves original aspect ratios and exports a new ZIP with a minimum short side of 1200 pixels. Browser extension installation and downloads require user participation. Image generation availability and usage limits depend on your Codex environment. Local packaging requires Python and Pillow.",
-    "developerName": "ПростоJPG",
+    "developerName": "ПростоСеллер",
     "category": "Productivity",
     "capabilities": ["Interactive", "Read", "Write"],
     "websiteURL": "https://prosto-seller.ru/learn/cards/",
@@ -19,9 +19,9 @@
     "composerIcon": "./assets/icon32.png",
     "brandColor": "#2B65E9",
     "defaultPrompt": [
-      "Скачать фото и видео товара с WB или OZON по артикулу",
-      "Создай схожие карточки товара по артикулу",
-      "Создай схожие карточки с моим товаром по артикулу и прикреплённому фото"
+      "/ProstoJpg-1 — Скачать фото и видео по артикулу",
+      "/ProstoJpg-2 — Создать схожую карточку",
+      "/ProstoJpg-3 — Создать схожую карточку с моим товаром"
     ]
   }
 }

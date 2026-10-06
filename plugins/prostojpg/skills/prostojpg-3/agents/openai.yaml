@@ -1,0 +1,6 @@
+interface:
+  display_name: "ProstoJpg-3 — Карточки с моим товаром"
+  short_description: "Заменить товар на карточках по вашему фото"
+  default_prompt: "Используй $prostojpg-3: создай схожие карточки с моим товаром по артикулу и прикреплённому фото."
+policy:
+  allow_implicit_invocation: true

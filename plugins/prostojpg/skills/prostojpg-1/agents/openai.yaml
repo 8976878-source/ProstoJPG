@@ -1,0 +1,6 @@
+interface:
+  display_name: "ProstoJpg-1 — Скачать фото и видео"
+  short_description: "Скачать фото и видео WB/Ozon по артикулу"
+  default_prompt: "Используй $prostojpg-1: скачай фото и видео по артикулу."
+policy:
+  allow_implicit_invocation: true

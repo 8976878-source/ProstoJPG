@@ -1,0 +1,6 @@
+interface:
+  display_name: "ProstoJpg-2 — Схожие карточки"
+  short_description: "Создать похожие карточки WB/Ozon по артикулу"
+  default_prompt: "Используй $prostojpg-2: создай схожие карточки по артикулу."
+policy:
+  allow_implicit_invocation: true
