@@ -1,18 +1,34 @@
 {
   "name": "prostojpg",
-  "version": "1.0.1",
-  "description": "Download product photos from Wildberries and Ozon with the ProstoJPG browser extension, create similar product cards or replace the main subject using image generation available in Codex, and package the results locally.",
-  "author": { "name": "ПростоJPG", "url": "https://prosto-seller.ru/" },
+  "version": "1.0.2",
+  "description": "ПростоJPG: Codex скачивает фото и видео WB/Ozon по артикулу, создаёт похожие карточки или заменяет товар по фото и собирает локальный ZIP.",
+  "author": {
+    "name": "ПростоJPG",
+    "url": "https://prosto-seller.ru/"
+  },
   "homepage": "https://github.com/8976878-source/ProstoJPG",
   "skills": "./skills/",
-  "keywords": ["Wildberries", "WB", "Ozon", "product photos", "product cards", "ПростоJPG", "карточки товара", "фото по артикулу"],
+  "keywords": [
+    "Wildberries",
+    "WB",
+    "Ozon",
+    "product photos",
+    "product cards",
+    "ПростоJPG",
+    "карточки товара",
+    "фото по артикулу"
+  ],
   "interface": {
     "displayName": "ПростоJPG от ПростоСеллер",
     "shortDescription": "Product photos for WB and Ozon",
-    "longDescription": "Choose one of three workflows: download product photos and available videos by article number with the ProstoJPG Chrome extension; create similar product cards with image generation available in your Codex environment; or replace the main subject with your attached product photo. The bundled local script validates all photos, preserves original aspect ratios and exports a new ZIP with a minimum short side of 1200 pixels. Browser extension installation and downloads require user participation. Image generation availability and usage limits depend on your Codex environment. Local packaging requires Python and Pillow.",
+    "longDescription": "Codex uses an external Chrome or Yandex Browser (never the in-app browser) to open a matching WB/Ozon product page, collects its gallery and downloads photos and supported videos directly into a local ZIP. Choose original photos, similar product cards, or replacement with your attached product photo using image generation available in Codex. The skill also guides installation of the current ProstoJPG extension in Chrome and Yandex Browser through the official store. Browser install confirmation remains required. An external-browser control connection, network access, Python and Pillow are required. If VPN blocks local HTTP, the skill can package files saved by the external browser media-download tool; image generation depends on your environment. Final images preserve original aspect ratios with a minimum short side of 1200 pixels.",
     "developerName": "ПростоСеллер",
     "category": "Productivity",
-    "capabilities": ["Interactive", "Read", "Write"],
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
     "websiteURL": "https://prosto-seller.ru/learn/cards/",
     "privacyPolicyURL": "https://prosto-seller.ru/learn/cards/privacy.html",
     "logo": "./assets/icon128.png",
