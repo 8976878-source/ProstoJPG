@@ -41,6 +41,14 @@
 
 **Установка из GitHub:**
 
+Чтобы не вводить команды вручную, отправьте Codex:
+
+> Установи ПростоJPG из https://github.com/8976878-source/ProstoJPG вместе со скиллами и открой установку расширения в Chrome и Яндекс Браузере, если они установлены.
+
+Добавлен [установщик для Windows](INSTALL.md). [Скачать BAT-файлы с установщиком](downloads/prostojpg-install-windows.zip), распаковать всю папку и запустить `install.bat`. Для одного расширения используйте `install-extension.bat`: он открывает официальный магазин в каждом найденном браузере. В браузерах нужно подтвердить «Добавить расширение».
+
+Для ручной установки:
+
 ```text
 codex plugin marketplace add 8976878-source/ProstoJPG
 codex plugin add prostojpg@prostojpg-marketplace
