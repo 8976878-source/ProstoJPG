@@ -1,0 +1,6 @@
+interface:
+  display_name: "ПростоJPG — карточки WB и Ozon"
+  short_description: "Фото по артикулу, похожие карточки и замена товара"
+  default_prompt: "Используй $product-cards: предложи скачать фото, создать похожие карточки или заменить предмет на мой товар."
+policy:
+  allow_implicit_invocation: true
