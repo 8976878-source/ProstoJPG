@@ -76,6 +76,7 @@ try {
     if ($chrome) { $browsers += [ordered]@{name='Chrome'; executable=$chrome; extensionStatus='planned'} }
     if ($yandex) { $browsers += [ordered]@{name='Yandex'; executable=$yandex; extensionStatus='planned'} }
     $plugin = [ordered]@{status='not-requested'}
+    $bridge = [ordered]@{status='not-requested'}
     if (-not $ExtensionOnly) {
         $cli = Resolve-Executable $CodexPath $codexCandidates
         if (-not $cli) { throw 'Codex CLI was not found. Install Codex or supply -CodexPath. Browser-only setup: -ExtensionOnly.' }
@@ -85,6 +86,14 @@ try {
             $installed = Invoke-Codex $cli @('plugin', 'add', 'prostojpg@prostojpg-marketplace', '--json')
             if ($installed.name -ne 'prostojpg' -or -not $installed.version) { throw 'Codex did not confirm ProstoJPG installation.' }
             $plugin = [ordered]@{status='installed'; version=$installed.version; skillsBundled=$true}
+            if ($installed.installedPath) {
+                $bridgeInstaller = Join-Path $installed.installedPath 'bridge\install.ps1'
+                if (Test-Path -LiteralPath $bridgeInstaller -PathType Leaf) {
+                    $bridgeLines = @(& $bridgeInstaller -CodexPath $cli)
+                    if ($LASTEXITCODE -ne 0) { throw 'Local Codex bridge installation failed.' }
+                    $bridge = ($bridgeLines -join [Environment]::NewLine) | ConvertFrom-Json
+                } else { $bridge = [ordered]@{status='unavailable'; reason='Installed plugin has no native bridge installer.'} }
+            } else { $bridge = [ordered]@{status='unavailable'; reason='Codex did not return installedPath; install bridge/install.ps1 from the plugin package.'} }
         }
     }
     if (-not $PlanOnly) {
@@ -104,7 +113,7 @@ try {
         }
     }
     $report = [ordered]@{
-        plugin=$plugin; browsers=@($browsers); storeUrl=$storeUrl;
+        plugin=$plugin; bridge=$bridge; browsers=@($browsers); storeUrl=$storeUrl;
         browserConfirmationRequired=$true; noSupportedBrowserFound=($browsers.Count -eq 0)
     }
     $report | ConvertTo-Json -Depth 6

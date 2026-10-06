@@ -1,6 +1,6 @@
 {
   "name": "prostojpg",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "ПростоJPG: Codex скачивает фото и видео WB/Ozon по артикулу, создаёт похожие карточки или заменяет товар по фото и собирает локальный ZIP.",
   "author": {
     "name": "ПростоJPG",
@@ -21,7 +21,7 @@
   "interface": {
     "displayName": "ПростоJPG от ПростоСеллер",
     "shortDescription": "Product photos for WB and Ozon",
-    "longDescription": "Codex uses an external Chrome or Yandex Browser (never the in-app browser) to open a matching WB/Ozon product page, collects its gallery and downloads photos and supported videos directly into a local ZIP. Choose original photos, similar product cards, or replacement with your attached product photo using image generation available in Codex. The skill also guides installation of the current ProstoJPG extension in Chrome and Yandex Browser through the official store. Browser install confirmation remains required. An external-browser control connection, network access, Python and Pillow are required. If VPN blocks local HTTP, the skill can package files saved by the external browser media-download tool; image generation depends on your environment. Final images preserve original aspect ratios with a minimum short side of 1200 pixels.",
+    "longDescription": "Codex uses an external Chrome or Yandex Browser (never the in-app browser) to open a matching WB/Ozon product page, collects its gallery and downloads photos and supported videos directly into a local ZIP. Choose original photos, similar product cards, or replacement with your attached product photo using image generation available in Codex. The skill also guides installation of the current ProstoJPG extension in Chrome and Yandex Browser through the official store. Browser install confirmation remains required. An external-browser control connection, network access, Python and Pillow are required. If VPN blocks local HTTP, the skill can package files saved by the external browser media-download tool; image generation depends on your environment. Final images preserve original aspect ratios with a minimum short side of 1200 pixels. The 1.0.21 browser extension provides two design buttons and transfers source image bytes through a restricted local native-messaging bridge to Codex App Server. The bridge uses ChatGPT sign-in and validates real imageGeneration results before exporting ZIP. The single BAT installs the bridge from the plugin package when the installedPath is available.",
     "developerName": "ПростоСеллер",
     "category": "Productivity",
     "capabilities": [
