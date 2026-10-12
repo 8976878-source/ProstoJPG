@@ -197,6 +197,53 @@ def build(args):
     return {'archive': str(output), 'image_count': len(inputs), 'video_count': report['video_count']}
 
 
+def export(args):
+    """Export completed cards as individual JPEG files without creating an archive."""
+    root = Path(args.job_dir).resolve()
+    output = Path(args.output_dir).resolve()
+    if output.exists():
+        raise ValueError('Папка результата уже существует. Выберите новую папку.')
+    if output.suffix.lower() == '.zip':
+        raise ValueError('Укажите папку для отдельных фото, а не ZIP.')
+    job = json.loads((root / 'job.json').read_text(encoding='utf-8'))
+    if job.get('version') != 1 or job.get('mode') not in {'2', '3'} or not job.get('images'):
+        raise ValueError('Нужен подготовленный набор фото ProstoJpg-2 или ProstoJpg-3.')
+    if job['mode'] == '3' and not job.get('subject'):
+        raise ValueError('В задании отсутствует фото вашего товара.')
+    inputs, names = [], set()
+    for record in job['images']:
+        path = safe_job_path(root, record['generated'])
+        if not path.is_file():
+            raise ValueError('Не обработано фото: ' + record.get('original_name', path.name))
+        relative = PurePosixPath(record['output'])
+        if (relative.parts[:1] != ('photos',) or len(relative.parts) != 2
+                or '\\' in record['output'] or ':' in record['output']
+                or relative.suffix.lower() != '.jpg' or relative.name.casefold() in names):
+            raise ValueError('Недопустимое или повторное имя результата.')
+        names.add(relative.name.casefold())
+        size = target_size(int(record['width']), int(record['height']))
+        read_photo(path)
+        inputs.append((record, path, relative.name, size))
+    output.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix='.prostojpg-export-', dir=output.parent) as temporary:
+        staging = Path(temporary) / 'photos'
+        staging.mkdir()
+        report = {'mode': job['mode'], 'created_at': datetime.now(timezone.utc).isoformat(),
+                  'min_short_side': 1200, 'image_count': len(inputs), 'photos': []}
+        for record, path, name, size in inputs:
+            padded, upscaled = export_photo(read_photo(path), size, staging / name)
+            with Image.open(staging / name) as verified:
+                if verified.size != size or min(verified.size) < 1200:
+                    raise ValueError('Экспортированное фото не прошло проверку размеров.')
+            report['photos'].append({'file': name, 'width': size[0], 'height': size[1],
+                                     'original_width': record['width'], 'original_height': record['height'],
+                                     'padded': padded, 'upscaled': upscaled})
+        (staging / 'manifest.json').write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding='utf-8')
+        staging.rename(output)
+    return {'output_dir': str(output), 'files': [str(output / name) for _, _, name, _ in inputs],
+            'image_count': len(inputs), 'manifest': str(output / 'manifest.json')}
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest='command', required=True)
@@ -210,9 +257,13 @@ def main():
     assembly = commands.add_parser('build')
     assembly.add_argument('--job-dir', required=True)
     assembly.add_argument('--output', required=True)
+    delivery = commands.add_parser('export')
+    delivery.add_argument('--job-dir', required=True)
+    delivery.add_argument('--output-dir', required=True)
     args = parser.parse_args()
     try:
-        print(json.dumps(prepare(args) if args.command == 'prepare' else build(args), ensure_ascii=False))
+        action = {'prepare': prepare, 'build': build, 'export': export}[args.command]
+        print(json.dumps(action(args), ensure_ascii=False))
     except (ValueError, OSError, KeyError, zipfile.BadZipFile) as error:
         print(f'Ошибка: {error}', file=sys.stderr)
         return 1

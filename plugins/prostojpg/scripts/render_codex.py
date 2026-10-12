@@ -8,7 +8,7 @@ from pathlib import Path
 import shutil
 import sys
 import threading
-from cards import build, read_photo, safe_job_path
+from cards import export, read_photo, safe_job_path
 from codex_rpc import CodexClient
 
 PROMPTS = {
@@ -42,7 +42,9 @@ def render_job(job_dir, output, client, progress=None):
     root = Path(job_dir).resolve(strict=True)
     output = Path(output).resolve()
     if output.exists():
-        raise ValueError('Архив уже существует. Выберите новое имя.')
+        raise ValueError('Папка результата уже существует. Выберите новую папку.')
+    if output.suffix.lower() == '.zip':
+        raise ValueError('Укажите папку для отдельных фото, а не ZIP.')
     job = json.loads((root / 'job.json').read_text(encoding='utf-8'))
     if job.get('version') != 1 or job.get('mode') not in PROMPTS or not job.get('images'):
         raise ValueError('Нужен подготовленный набор фото ProstoJpg-2 или ProstoJpg-3.')
@@ -71,18 +73,18 @@ def render_job(job_dir, output, client, progress=None):
         target.parent.mkdir(parents=True, exist_ok=True)
         if actual != target:
             shutil.copyfile(actual, target)
-    return build(Namespace(job_dir=root, output=output))
+    return export(Namespace(job_dir=root, output_dir=output))
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--job-dir')
-    parser.add_argument('--output')
+    parser.add_argument('--output-dir', '--output', dest='output_dir')
     parser.add_argument('--codex-path')
     parser.add_argument('--check', action='store_true')
     args = parser.parse_args()
-    if not args.check and (not args.job_dir or not args.output):
-        parser.error('--job-dir and --output are required unless --check is used')
+    if not args.check and (not args.job_dir or not args.output_dir):
+        parser.error('--job-dir and --output-dir are required unless --check is used')
     client = None
     try:
         executable = find_codex(args.codex_path)
@@ -93,7 +95,7 @@ def main():
         if args.check:
             result = dict(**status, codex=str(executable))
         else:
-            result = render_job(args.job_dir, args.output, client,
+            result = render_job(args.job_dir, args.output_dir, client,
                 lambda item: print(json.dumps(item, ensure_ascii=False), file=sys.stderr, flush=True))
         print(json.dumps(result, ensure_ascii=False))
     except (ValueError, OSError, RuntimeError, TimeoutError, KeyError) as error:
