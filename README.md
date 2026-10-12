@@ -26,7 +26,7 @@
 Установи https://github.com/8976878-source/ProstoJPG/
 ```
 
-[**Скачать плагин для Codex**](downloads/prostojpg-plugin-1.1.3.zip) · [**Скачать плагин для Claude Code**](downloads/prostojpg-claude-plugin-1.1.3.zip) · [**Инструкция установки**](INSTALL.md)
+[**Скачать плагин для Codex**](downloads/prostojpg-plugin-1.1.4.zip) · [**Скачать плагин для Claude Code**](downloads/prostojpg-claude-plugin-1.1.4.zip) · [**Инструкция установки**](INSTALL.md)
 
 Для установки помощнику нужен доступ к вашему компьютеру. Для генерации в Claude Code нужен также установленный Codex с входом через аккаунт ChatGPT и доступной генерацией изображений. Дополнительный плагин генератора и API-ключ не нужны.
 
@@ -58,4 +58,4 @@
 
 [Сайт ПростоСеллер](https://prosto-seller.ru/) · [Политика](https://prosto-seller.ru/legal) · [Расширение браузера](https://chromewebstore.google.com/detail/простоjpg/djjocjgglhbkcfclclilmamlcoggoole)
 
-Версия 1.1.3.
+Версия 1.1.4.
