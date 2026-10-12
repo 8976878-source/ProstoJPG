@@ -1,0 +1,21 @@
+{
+  "name": "prostojpg",
+  "version": "1.1.0",
+  "displayName": "ПростоJPG от ПростоСеллер",
+  "description": "Карточки по загруженным фото через установленный Codex и ChatGPT. Расширение для скачивания: https://chromewebstore.google.com/detail/простоjpg/djjocjgglhbkcfclclilmamlcoggoole",
+  "author": {
+    "name": "ПростоСеллер",
+    "url": "https://prosto-seller.ru/"
+  },
+  "homepage": "https://prosto-seller.ru/",
+  "repository": "https://github.com/8976878-source/ProstoJPG",
+  "documentationUrl": "https://github.com/8976878-source/ProstoJPG/blob/main/README.md",
+  "privacyPolicyUrl": "https://prosto-seller.ru/legal",
+  "keywords": [
+    "Wildberries",
+    "Ozon",
+    "product-cards",
+    "Codex",
+    "ПростоJPG"
+  ]
+}

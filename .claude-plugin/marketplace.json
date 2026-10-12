@@ -1,0 +1,14 @@
+{
+  "name": "prostojpg-marketplace",
+  "owner": {
+    "name": "ПростоСеллер",
+    "url": "https://prosto-seller.ru/"
+  },
+  "plugins": [
+    {
+      "name": "prostojpg",
+      "source": "./plugins/prostojpg",
+      "description": "Карточки по загруженным фото через установленный Codex и ChatGPT. Расширение для скачивания: https://chromewebstore.google.com/detail/простоjpg/djjocjgglhbkcfclclilmamlcoggoole"
+    }
+  ]
+}

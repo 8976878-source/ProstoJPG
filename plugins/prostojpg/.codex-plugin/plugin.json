@@ -1,12 +1,12 @@
 {
   "name": "prostojpg",
-  "version": "1.0.3",
-  "description": "ПростоJPG: Codex скачивает фото и видео WB/Ozon по артикулу, создаёт похожие карточки или заменяет товар по фото и собирает локальный ZIP.",
+  "version": "1.1.0",
+  "description": "ПростоJPG: скачивание через расширение, похожие карточки и замена товара по загруженным фото. Готовый локальный ZIP.",
   "author": {
     "name": "ПростоJPG",
     "url": "https://prosto-seller.ru/"
   },
-  "homepage": "https://github.com/8976878-source/ProstoJPG",
+  "homepage": "https://prosto-seller.ru/",
   "skills": "./skills/",
   "keywords": [
     "Wildberries",
@@ -20,8 +20,8 @@
   ],
   "interface": {
     "displayName": "ПростоJPG от ПростоСеллер",
-    "shortDescription": "Product photos for WB and Ozon",
-    "longDescription": "Codex uses an external Chrome or Yandex Browser (never the in-app browser) to open a matching WB/Ozon product page, collects its gallery and downloads photos and supported videos directly into a local ZIP. Choose original photos, similar product cards, or replacement with your attached product photo using image generation available in Codex. The skill also guides installation of the current ProstoJPG extension in Chrome and Yandex Browser through the official store. Browser install confirmation remains required. An external-browser control connection, network access, Python and Pillow are required. If VPN blocks local HTTP, the skill can package files saved by the external browser media-download tool; image generation depends on your environment. Final images preserve original aspect ratios with a minimum short side of 1200 pixels. The 1.0.21 browser extension provides two design buttons and transfers source image bytes through a restricted local native-messaging bridge to Codex App Server. The bridge uses ChatGPT sign-in and validates real imageGeneration results before exporting ZIP. The single BAT installs the bridge from the plugin package when the installedPath is available.",
+    "shortDescription": "Карточки товаров по вашим фото",
+    "longDescription": "ПростоJPG от ПростоСеллер\n\n1. Скачайте расширение для фото и видео WB/Ozon:\nhttps://chromewebstore.google.com/detail/простоjpg/djjocjgglhbkcfclclilmamlcoggoole\nОткройте карточку товара и сохраните архив через расширение.\n\n2. Установите плагин Codex или Claude Code:\nhttps://github.com/8976878-source/ProstoJPG/\nЛокальному Codex напишите: «Установи https://github.com/8976878-source/ProstoJPG/». Для Claude Code также нужен Codex с входом в ChatGPT. Пошаговая инструкция и ссылки на скачивание находятся на странице репозитория.\n\n3. Выберите режим и загрузите фото:\nProstoJpg-1 — помощь в скачивании через расширение; управление внешним браузером возможно при предоставленном доступе.\nProstoJpg-2 — похожие карточки: приложите исходные фото или ZIP.\nProstoJpg-3 — ваш товар: приложите исходные карточки и последним отдельным файлом фото товара.\nПромпты уже встроены — писать их не нужно.\n\nРезультат: локальный ZIP, пропорции оригинала, короткая сторона от 1200 px. Генерация через аккаунт ChatGPT зависит от доступа и лимитов; изображения передаются OpenAI для обработки. Дополнительный плагин генератора и API-ключ не нужны.",
     "developerName": "ПростоСеллер",
     "category": "Productivity",
     "capabilities": [
@@ -29,15 +29,16 @@
       "Read",
       "Write"
     ],
-    "websiteURL": "https://prosto-seller.ru/learn/cards/",
-    "privacyPolicyURL": "https://prosto-seller.ru/learn/cards/privacy.html",
+    "websiteURL": "https://prosto-seller.ru/",
+    "privacyPolicyURL": "https://prosto-seller.ru/legal",
     "logo": "./assets/icon128.png",
     "composerIcon": "./assets/icon32.png",
     "brandColor": "#2B65E9",
     "defaultPrompt": [
-      "/ProstoJpg-1 — Скачать фото и видео по артикулу",
-      "/ProstoJpg-2 — Создать схожую карточку",
-      "/ProstoJpg-3 — Создать схожую карточку с моим товаром"
-    ]
+      "ProstoJpg-1 — Скачать фото и видео через расширение",
+      "ProstoJpg-2 — Создать похожие карточки по фото",
+      "ProstoJpg-3 — Создать карточки с моим товаром"
+    ],
+    "screenshots": []
   }
 }

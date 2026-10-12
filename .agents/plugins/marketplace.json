@@ -1,11 +1,19 @@
 {
   "name": "prostojpg-marketplace",
-  "interface": { "displayName": "ПростоJPG" },
+  "interface": {
+    "displayName": "ПростоJPG"
+  },
   "plugins": [
     {
       "name": "prostojpg",
-      "source": { "source": "local", "path": "./plugins/prostojpg" },
-      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" },
+      "source": {
+        "source": "local",
+        "path": "./plugins/prostojpg"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_USE"
+      },
       "category": "Productivity"
     }
   ]
