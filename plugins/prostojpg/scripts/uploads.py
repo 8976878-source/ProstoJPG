@@ -14,10 +14,10 @@ def prepare_upload(args):
     if destination.exists():
         raise ValueError('Папка задания уже существует. Выберите новую папку.')
     subject = Path(args.subject).resolve(strict=True) if args.subject else None
-    if args.mode == '3' and subject is None:
-        raise ValueError('Для ProstoJpg-3 нужно фото вашего товара (--subject).')
+    if args.mode in {'3', '4'} and subject is None:
+        raise ValueError(f'Для ProstoJpg-{args.mode} нужно фото вашего товара (--subject).')
     if args.mode == '2' and subject is not None:
-        raise ValueError('Фото замены товара используется только в ProstoJpg-3.')
+        raise ValueError('Фото замены товара используется только в ProstoJpg-3 и ProstoJpg-4.')
     if subject:
         read_photo(subject)
     photos = [Path(p).resolve(strict=True) for p in (args.photos or [])]
@@ -71,7 +71,7 @@ def prepare_upload(args):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--job-dir', required=True)
-    parser.add_argument('--mode', choices=['2', '3'], required=True)
+    parser.add_argument('--mode', choices=['2', '3', '4'], required=True)
     sources = parser.add_mutually_exclusive_group(required=True)
     sources.add_argument('--photos', nargs='+')
     sources.add_argument('--archive')

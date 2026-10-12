@@ -13,7 +13,8 @@ from codex_rpc import CodexClient
 
 PROMPTS = {
     '2': 'Create a similar photo. Slightly change the camera angle and some visual details while keeping the product recognizable. Improve the image quality. If the source photo contains text blocks, slightly adjust their colors and shapes while preserving the wording and readability. If a person is present in the source photo, change their face and hairstyle so they look like a different person, while keeping the overall look and style recognizable.',
-    '3': 'Create a similar photo. Slightly change the camera angle and some visual details while keeping the overall image recognizable. Improve the image quality. Replace the main subject with the product shown in the attached reference photo. If the source photo contains text blocks, slightly adjust their colors and shapes while preserving the wording and readability. If a person is present in the source photo, change their face and hairstyle so they look like a different person, while keeping the overall look and style recognizable.'
+    '3': 'Create a similar photo. Slightly change the camera angle and some visual details while keeping the overall image recognizable. Improve the image quality. Replace the main subject with the product shown in the attached reference photo. If the source photo contains text blocks, slightly adjust their colors and shapes while preserving the wording and readability. If a person is present in the source photo, change their face and hairstyle so they look like a different person, while keeping the overall look and style recognizable.',
+    '4': 'Replace only the main product in the source photo with the product shown in the attached reference photo. Preserve the original composition, camera angle, background, and overall style. Improve the product image quality while keeping the replacement product faithful to the reference. If a person is present in the source photo, preserve their identity and recognizable appearance. Keep their facial features, face shape, expression, hairstyle, skin tone, and pose unchanged; do not replace the person or alter their face. Do not beautify, retouch, or restyle the person. Make the replacement product fit naturally into the scene, with realistic proportions, lighting, shadows, and contact with the person\'s body. Preserve any text blocks, their wording, colors, shapes, and readability.'
 }
 
 
@@ -47,9 +48,9 @@ def render_job(job_dir, output, client, progress=None):
         raise ValueError('Укажите папку для отдельных фото, а не ZIP.')
     job = json.loads((root / 'job.json').read_text(encoding='utf-8'))
     if job.get('version') != 1 or job.get('mode') not in PROMPTS or not job.get('images'):
-        raise ValueError('Нужен подготовленный набор фото ProstoJpg-2 или ProstoJpg-3.')
+        raise ValueError('Нужен подготовленный набор фото ProstoJpg-2, ProstoJpg-3 или ProstoJpg-4.')
     subject = safe_job_path(root, job['subject']) if job.get('subject') else None
-    if job['mode'] == '3' and subject is None:
+    if job['mode'] in {'3', '4'} and subject is None:
         raise ValueError('В задании отсутствует фото вашего товара.')
     if subject:
         read_photo(subject)

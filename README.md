@@ -26,7 +26,7 @@
 Установи https://github.com/8976878-source/ProstoJPG/
 ```
 
-[**Скачать плагин для Codex**](downloads/prostojpg-plugin-1.1.5.zip) · [**Скачать плагин для Claude Code**](downloads/prostojpg-claude-plugin-1.1.5.zip) · [**Инструкция установки**](INSTALL.md)
+[**Скачать плагин для Codex**](downloads/prostojpg-plugin-1.1.6.zip) · [**Скачать плагин для Claude Code**](downloads/prostojpg-claude-plugin-1.1.6.zip) · [**Инструкция установки**](INSTALL.md)
 
 Для установки помощнику нужен доступ к вашему компьютеру. Для генерации в Claude Code нужен также установленный Codex с входом через аккаунт ChatGPT и доступной генерацией изображений. Дополнительный плагин генератора и API-ключ не нужны.
 
@@ -42,11 +42,13 @@
 
 ![ProstoJpg-3 — пример замены товара на карточке](docs/images/ProstoJPG-3.jpg)
 
+**ProstoJpg-4 — Создай карточки с моим товаром не меняя модель.** Выберите ProstoJpg-4 или напишите `$prostojpg-4`, загрузите исходные карточки, а последним фото — фото своего товара. Помощник заменит товар, сохраняя лицо, черты лица и узнаваемость человека на исходной карточке.
+
 После установки при необходимости откройте новый чат, чтобы обновился список навыков.
 
 Для создания карточек достаточно выбрать режим и загрузить фото. Артикул и собственный промпт не нужны.
 
-В Claude Code команды: `/prostojpg:prostojpg-1`, `/prostojpg:prostojpg-2`, `/prostojpg:prostojpg-3`.
+В Claude Code команды: `/prostojpg:prostojpg-1`, `/prostojpg:prostojpg-2`, `/prostojpg:prostojpg-3`, `/prostojpg:prostojpg-4`.
 
 ## Результат и генерация
 
@@ -62,4 +64,4 @@
 
 [Сайт ПростоСеллер](https://prosto-seller.ru/) · [Политика](https://prosto-seller.ru/legal) · [Расширение браузера](https://chromewebstore.google.com/detail/простоjpg/djjocjgglhbkcfclclilmamlcoggoole)
 
-Версия 1.1.5.
+Версия 1.1.6.

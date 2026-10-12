@@ -17,7 +17,7 @@ codex plugin marketplace add 8976878-source/ProstoJPG
 codex plugin add prostojpg@prostojpg-marketplace
 ```
 
-После установки при необходимости откройте новый чат. Выберите команду на странице плагина или используйте `$prostojpg-1`, `$prostojpg-2`, `$prostojpg-3`.
+После установки при необходимости откройте новый чат. Выберите команду на странице плагина или используйте `$prostojpg-1`, `$prostojpg-2`, `$prostojpg-3`, `$prostojpg-4`.
 
 ## Claude Code
 
@@ -26,7 +26,7 @@ claude plugin marketplace add 8976878-source/ProstoJPG
 claude plugin install prostojpg@prostojpg-marketplace
 ```
 
-Команды: `/prostojpg:prostojpg-1`, `/prostojpg:prostojpg-2`, `/prostojpg:prostojpg-3`.
+Команды: `/prostojpg:prostojpg-1`, `/prostojpg:prostojpg-2`, `/prostojpg:prostojpg-3`, `/prostojpg:prostojpg-4`.
 
 Для создания фото через Claude Code нужен установленный Codex с входом через ChatGPT и доступной генерацией изображений. Если нужен вход, выполните `codex login` через официальное окно авторизации. Дополнительный плагин генератора и API-ключ не нужны.
 
