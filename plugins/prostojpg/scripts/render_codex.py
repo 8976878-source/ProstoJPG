@@ -12,8 +12,8 @@ from cards import export, read_photo, safe_job_path
 from codex_rpc import CodexClient
 
 PROMPTS = {
-    '2': 'Create a similar photo. Slightly change the camera angle and some visual details while keeping the product recognizable. Improve the image quality. If a person is present in the source photo, slightly alter their appearance while keeping their overall look recognizable.',
-    '3': 'Create a similar photo. Slightly change the camera angle and some visual details while keeping the overall image recognizable. Improve the image quality. Replace the main subject with the product shown in the attached reference photo. If a person is present in the source photo, slightly alter their appearance while keeping their overall look recognizable.'
+    '2': 'Create a similar photo. Slightly change the camera angle and some visual details while keeping the product recognizable. Improve the image quality. If the source photo contains text blocks, slightly adjust their colors and shapes while preserving the wording and readability. If a person is present in the source photo, change their face and hairstyle so they look like a different person, while keeping the overall look and style recognizable.',
+    '3': 'Create a similar photo. Slightly change the camera angle and some visual details while keeping the overall image recognizable. Improve the image quality. Replace the main subject with the product shown in the attached reference photo. If the source photo contains text blocks, slightly adjust their colors and shapes while preserving the wording and readability. If a person is present in the source photo, change their face and hairstyle so they look like a different person, while keeping the overall look and style recognizable.'
 }
 
 
