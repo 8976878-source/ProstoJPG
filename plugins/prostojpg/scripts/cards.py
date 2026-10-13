@@ -206,9 +206,11 @@ def export(args):
     if output.suffix.lower() == '.zip':
         raise ValueError('Укажите папку для отдельных фото, а не ZIP.')
     job = json.loads((root / 'job.json').read_text(encoding='utf-8'))
-    if job.get('version') != 1 or job.get('mode') not in {'2', '3', '4'} or not job.get('images'):
-        raise ValueError('Нужен подготовленный набор фото ProstoJpg-2, ProstoJpg-3 или ProstoJpg-4.')
-    if job['mode'] in {'3', '4'} and not job.get('subject'):
+    if job.get('version') != 2:
+        raise ValueError('После перенумерации команд создайте новое задание из исходных фото.')
+    if job.get('mode') not in {'1', '2', '3'} or not job.get('images'):
+        raise ValueError('Нужен подготовленный набор фото ProstoJpg-1, ProstoJpg-2 или ProstoJpg-3.')
+    if job['mode'] in {'2', '3'} and not job.get('subject'):
         raise ValueError('В задании отсутствует фото вашего товара.')
     inputs, names = [], set()
     for record in job['images']:

@@ -10,14 +10,16 @@ from cards import IMAGE_EXTENSIONS, inspect_entries, read_photo, MAX_ARCHIVE_BYT
 
 
 def prepare_upload(args):
+    if args.mode not in {'1', '2', '3'}:
+        raise ValueError('Выберите режим ProstoJpg-1, ProstoJpg-2 или ProstoJpg-3.')
     destination = Path(args.job_dir).resolve()
     if destination.exists():
         raise ValueError('Папка задания уже существует. Выберите новую папку.')
     subject = Path(args.subject).resolve(strict=True) if args.subject else None
-    if args.mode in {'3', '4'} and subject is None:
+    if args.mode in {'2', '3'} and subject is None:
         raise ValueError(f'Для ProstoJpg-{args.mode} нужно фото вашего товара (--subject).')
-    if args.mode == '2' and subject is not None:
-        raise ValueError('Фото замены товара используется только в ProstoJpg-3 и ProstoJpg-4.')
+    if args.mode == '1' and subject is not None:
+        raise ValueError('Фото замены товара используется только в ProstoJpg-2 и ProstoJpg-3.')
     if subject:
         read_photo(subject)
     photos = [Path(p).resolve(strict=True) for p in (args.photos or [])]
@@ -30,7 +32,7 @@ def prepare_upload(args):
         staging = Path(temporary) / 'job'
         (staging / 'originals').mkdir(parents=True)
         (staging / 'generated').mkdir()
-        job = dict(version=1, mode=args.mode, product='ProstoJPG', images=[], videos=[], subject=None)
+        job = dict(version=2, mode=args.mode, product='ProstoJPG', images=[], videos=[], subject=None)
 
         def add_photo(stream, name):
             extension = Path(name).suffix.lower()
@@ -71,7 +73,7 @@ def prepare_upload(args):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--job-dir', required=True)
-    parser.add_argument('--mode', choices=['2', '3', '4'], required=True)
+    parser.add_argument('--mode', choices=['1', '2', '3'], required=True)
     sources = parser.add_mutually_exclusive_group(required=True)
     sources.add_argument('--photos', nargs='+')
     sources.add_argument('--archive')

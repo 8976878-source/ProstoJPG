@@ -1,6 +1,0 @@
-interface:
-  display_name: "ProstoJpg-4 — Создай карточки с моим товаром не меняя модель"
-  short_description: "Заменить товар, сохранив лицо и узнаваемость модели"
-  default_prompt: "Используй $prostojpg-4: создай карточки с моим товаром не меняя модель."
-policy:
-  allow_implicit_invocation: true

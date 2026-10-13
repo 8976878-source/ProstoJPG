@@ -1,6 +1,6 @@
 interface:
-  display_name: "ProstoJpg-1 — Скачать фото и видео"
-  short_description: "Скачать архив карточки через расширение браузера"
-  default_prompt: "Используй $prostojpg-1: помоги скачать фото и видео через расширение."
+  display_name: "ProstoJpg-1 — Создать похожие карточки"
+  short_description: "Создать похожие карточки по загруженным фото"
+  default_prompt: "Используй $prostojpg-1: создай похожие карточки по загруженным фото."
 policy:
   allow_implicit_invocation: true

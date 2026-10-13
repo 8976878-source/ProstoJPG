@@ -1,6 +1,6 @@
 interface:
-  display_name: "ProstoJpg-3 — Карточки с моим товаром"
-  short_description: "Заменить товар на карточках по фото пользователя"
-  default_prompt: "Используй $prostojpg-3: замени товар на загруженных карточках."
+  display_name: "ProstoJpg-3 — Исходная карточка + мой товар, лицо не меняем"
+  short_description: "Заменить товар, сохранив лицо и узнаваемость модели"
+  default_prompt: "Используй $prostojpg-3: замени товар на исходных карточках, лицо не меняем."
 policy:
   allow_implicit_invocation: true
